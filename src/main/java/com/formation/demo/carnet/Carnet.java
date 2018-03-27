@@ -1,16 +1,18 @@
 package com.formation.demo.carnet;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 public class Carnet {
 
 	private int id;
 	
-	//@NotNull
+	@NotNull
 	private Civilite civilite;
+	
 	//@NotBlank              //@NotBlank verification de champs de formulaire
-	@Pattern(regexp=" (?i)[a-z]{2,50}", message="{com.formation.demo.constraint.nom.message}")//?i ignorer la case maj min//ou message="ERROR, ceci ne respecte pas les infos entrées")
+	@Pattern(regexp="(?i)[a-z]{2,50}", message="{com.formation.demo.constraint.nom.message}")//?i ignorer la case maj min//ou message="ERROR, ceci ne respecte pas les infos entrées")
 	private String nom;
 	
 	//@NotBlank //(message= "vous n'avez pas rempli le champs nom") //message personnalisé
