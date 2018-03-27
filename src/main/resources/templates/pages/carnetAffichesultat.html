@@ -6,9 +6,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-//affiche page html au lieu de pages/carnets
-    <div>
-		<ul th:each="carnet:${liste}">
+<div>
+		<ul th:object="${carnet}">
 			<li th:text="${carnet.id}"></li>
 			<li th:text="${carnet.civilite}"></li>
 			<li th:text="${carnet.nom}"></li>
@@ -20,6 +19,5 @@
 			<li th:text="${carnet.ville}"></li>
 		</ul>
 	</div>
-
 </body>
 </html>
