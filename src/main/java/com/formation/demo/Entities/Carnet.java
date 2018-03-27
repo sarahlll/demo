@@ -1,8 +1,10 @@
-package com.formation.demo.carnet;
+package com.formation.demo.Entities;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+
+import com.formation.demo.carnet.Civilite;
 
 public class Carnet {
 
@@ -20,10 +22,10 @@ public class Carnet {
 	private String prenom;
 	
 	@NotBlank
-	private String dateDeNaissance;
+	private String dateDeNaissance;/////////////////////////////////////////////////////////////////////pas fait!
 	
 	//@NotBlank
-	@Pattern(regexp="(\\+[0-9]|[0] {2})[0-9]{6,14}(?:x.+]?$)", message="{com.formation.demo.constraint.tel.message}")
+	@Pattern(regexp="^(\\+[0-9]|[0] {2})[0-9]{6,14}(?:x.+]?$)", message="{com.formation.demo.constraint.tel.message}")
 	private String tel;
 	
 	//@NotBlank(message="{com.formation.demo.constraint.email.message}")//message special properties

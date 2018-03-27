@@ -1,9 +1,10 @@
-package com.formation.demo.carnet;
+package com.formation.demo.Controllers;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,8 +16,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.formation.demo.Entities.Carnet;
+import com.formation.demo.Services.CarnetService;
+import com.formation.demo.carnet.Civilite;
+
 @RestController
 public class CarnetController {
+	@Autowired // instentiation
+	private CarnetService cs;
 
 	List<Carnet> listeCarnets= 
 			new ArrayList<Carnet>(Arrays.asList( new Carnet(1, Civilite.M, "Besson", "Luc", "1959-13-18", "0000000000", "5 avenue de l'Element", "75015", "Paris"),
@@ -49,7 +56,18 @@ public class CarnetController {
 	}
 	@RequestMapping(value="/carnets/{id}", method=RequestMethod.DELETE)
 	public void DelById(@PathVariable Integer id) {
-		this.listeCarnets.removeIf(p-> ((Integer)p.getId()).equals(id));
+		 this.listeCarnets.removeIf(p -> ((Integer)p.getId()).equals(id)); // methode lambda
+		//ou avec iterator
+		 /*Iterator<Carnet> it= listeCarnets.iterator();
+		while(it.hasNext()) {
+			Carnet carnet= it.next();
+			if(((Integer)carnet.getId()).equals(id))
+			{
+				it.remove();
+			}
+			
+		}*/
+		
 	}
 	
 	
