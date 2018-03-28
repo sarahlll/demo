@@ -5,8 +5,8 @@
 <title>carnet</title>
 </head>
 <body>
-	<form th:action=@{/carnet} th:object="${carnet}" method="post">
-		                                                               <!--${carnet}  fait reference a l'objet et @{/formulaire} à l'url -->
+	<form th:action=@{/formulaire} th:object="${carnet}" method="post">
+		<!--${carnet}  fait reference a l'objet et @{/formulaire} à l'url -->
 
 		<label> Monsieur</label> <input type="radio" value="M"
 			th:field="*{civilite}" />
@@ -43,16 +43,14 @@
 
 		<input th:type="hidden" th:name="_method" th:value="PUT"> <input
 			th:type="hidden" th:name="id" th:value="*{id}"> <input
-			type="submit" value="update"> 
-			
+			type="submit" value="update">
+
 
 	</form>
-
-
 	<p>Supprimer:</p>
-	<form action="@|/carnet/${carnet.id}|}" th:object="${carnet}"
-		th:methode="post"></form>
+	<form th:action="@{|/formulaire/${carnet.id}|}" th:method="post">
 	<input th:type="hidden" th:name="_method" th:value="DELETE">
 	<input type="submit" value="delete">
+	</form>
 </body>
 </html>

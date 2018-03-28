@@ -7,7 +7,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,7 +31,7 @@ public class CarnetController {
 	return mav; 
 	}
 	// carnetById
-	@RequestMapping(value="/carnet/{id}", method=RequestMethod.GET) 
+	@RequestMapping(value="/formulaire/{id}", method=RequestMethod.GET) 
 	public ModelAndView getById(@PathVariable Long id) { 
 	ModelAndView mav = new ModelAndView("pages/carnet"); 
 	mav.addObject("carnet", carnetService.findById(id).get()); 
@@ -57,8 +56,9 @@ public class CarnetController {
 	
 	 //les delete
 	@RequestMapping(value="/formulaire/{id}", method=RequestMethod.DELETE)
-	public void DelById(@PathVariable Long id) {
+	public ModelAndView DelById(@PathVariable Long id) {
 		  carnetService.deleteById(id);
+		  return new ModelAndView("redirect:/carnetshtml");
 		}
 	
 	@RequestMapping(value="/formulaire", method=RequestMethod.DELETE)
@@ -69,11 +69,11 @@ public class CarnetController {
 	
 	//update (=un add en PUT)
 	@RequestMapping(value="/formulaire", method=RequestMethod.PUT) 
-	public ModelAndView update(@RequestBody Carnet carnet, BindingResult br) { 
+	public ModelAndView update(@Validated Carnet carnet, BindingResult br) { 
 		if (br.hasErrors()) {
-			return new ModelAndView("pages/formulaire.html").addObject("carnet", carnet);
+			return new ModelAndView("pages/carnet.html").addObject("carnet", carnet);
 		}
 		carnetService.addcarnet(carnet);
-		return new ModelAndView("pages/carnets.html").addObject("carnet", carnet);
+		return new ModelAndView("redirect:/formulaire/"+carnet.getId());
 	}
 	} 
