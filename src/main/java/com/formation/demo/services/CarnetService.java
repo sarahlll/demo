@@ -10,17 +10,30 @@ import com.formation.demo.repositories.CarnetRepository;
 
 @Service
 public class CarnetService {
-	
+
 	@Autowired
 	CarnetRepository carnetRepository;
 
 	public List<Carnet> getAll() {
 		return carnetRepository.findAll();
-
 	}
+
+	// add dans la BDD
+	public void addcarnet(Carnet carnet) {
+		carnetRepository.save(carnet);
+	}
+
+	public void AddById(Integer id) {
+	}
+
+	// Suppression
+	public void deletecarnet(Carnet carnet) {
+		carnetRepository.delete(carnet);
+	}
+
+	public void deleteById( Long id) {
+		carnetRepository.deleteById(id);
+	}
+
 	
-	//pour add dans la BDD
-public void addcarnet(Carnet carnet) {
-	carnetRepository.save(carnet);
-}
 }

@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
@@ -15,7 +16,8 @@ import javax.validation.constraints.Pattern;
 @Table(name="personne")
 public class Carnet {
     @Id
-    @GeneratedValue// auto incrementation
+   // @GeneratedValue// auto incrementation par hibernate
+    @GeneratedValue(strategy=GenerationType.IDENTITY) //c la BDD qui le génére
 	private Long id;
    @Enumerated(EnumType.STRING)// En base de donnée ca va creer un varchar sin on met pas l'annoation avec la convertir en int
 	@Column(length=8)// création d'un attribut varchar  civilite de taille 8 on peut specifier le nom de la colonne (name="civ")
@@ -23,25 +25,31 @@ public class Carnet {
 	private Civilite civilite;
 	// @NotBlank
 	@Pattern(regexp = "(?i)[a-z]{2,50}", message = "{com.formation.annuaire.constraint.nom.message}") // i ignorer la
-																										// casse
+	@Column(length=50)																							// casse
 	private String nom;
 	// @NotBlank
 	@Pattern(regexp = "(?i)[a-z\\- ]{2,100}", message = "{com.formation.annuaire.constraint.nom.message}")
+	@Column(length=50)
 	private String prenom;
 	// @Pattern(regexp = "^([0-9]{2})/([0-9]{2})/([0-9]{4})$", message =
 	// "{com.formation.annuaire.constraint.tel.message}")
 	@NotBlank
+	@Column(columnDefinition="date", name="birthday")
 	private String dateDeNaissance;
 	@NotBlank
+	@Column(name="phone", length=10)
 	//@Pattern(regexp = "^(\\+[0-9]|[0]{2})[0-9] {6,14}(?:x.+)?$", message = "{com.formation.annuaire.constraint.tel.message}")
 	private String tel;
 	@NotBlank
+	@Column(length=100)
 	//@Pattern(regexp = "\\b[A-Z0-9._%-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}\\b", message = "{com.formation.annuaire.constraint.email.message}")
 	private String email;
 	@NotBlank
+	@Column(name="code postale", length=5)
 	//@Pattern(regexp = "^(([0-8][0-9])|(9[0-5])|(2[ab]))[0-9]{3}$", message = "{com.formation.annuaire.constraint.cp.message}")
 	private String cp;
 	@NotBlank
+	@Column(length=50)
 	//@Pattern(regexp = "(?i)[a-z -] {1,45}", message = "{com.formation.annuaire.constraint.nom.message}")
 	private String ville;
 
