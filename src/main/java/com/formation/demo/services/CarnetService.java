@@ -18,7 +18,7 @@ public class CarnetService {
 		return carnetRepository.findAll();
 	}
 
-	// add dans la BDD
+	// les add dans la BDD
 	public void addcarnet(Carnet carnet) {
 		carnetRepository.save(carnet);
 	}
@@ -26,7 +26,8 @@ public class CarnetService {
 	public void AddById(Integer id) {
 	}
 
-	// Suppression
+	
+	// les delete
 	public void deletecarnet(Carnet carnet) {
 		carnetRepository.delete(carnet);
 	}

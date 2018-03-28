@@ -44,8 +44,10 @@ public class CarnetController {
 			return new ModelAndView("pages/formulaire.html").addObject("carnet", carnet);
 		}
 		carnetService.addcarnet(carnet);
-		return new ModelAndView("pages/carnet.html").addObject("carnet", carnet);
+		return new ModelAndView("pages/carnets.html").addObject("carnet", carnet);
 	}
+	
+	
 	 //les delete
 	@RequestMapping(value="/formulaire/{id}", method=RequestMethod.DELETE)
 	public void DelById(@PathVariable Long id) {
@@ -56,6 +58,7 @@ public class CarnetController {
 	public void Delete(Carnet carnet) {
 		  carnetService.deletecarnet(carnet);
 		}
+	
 	
 	//update (=un add en PUT)
 	@RequestMapping(value="/formulaire", method=RequestMethod.PUT) 
