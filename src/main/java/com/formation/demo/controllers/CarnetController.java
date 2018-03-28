@@ -31,6 +31,13 @@ public class CarnetController {
 	mav.addObject("carnets", this.getAllCarnet()); 
 	return mav; 
 	}
+	// carnetById
+	@RequestMapping(value="/carnet/{id}", method=RequestMethod.GET) 
+	public ModelAndView getById(@PathVariable Long id) { 
+	ModelAndView mav = new ModelAndView("pages/carnet"); 
+	mav.addObject("carnet", carnetService.findById(id).get()); 
+	return mav; 
+	}
 	
 	@GetMapping(value = "/formulaire")
 	public ModelAndView form() {

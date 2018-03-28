@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
+ 
 <title>Formulaire</title>
 <style>
 label{
@@ -34,6 +35,7 @@ width: 150px;
    <label> Ville</label><input type="text" th:field="*{ville}"/> <br>
    <p th:if="${#fields.hasErrors('ville')}" th:errors="*{ville}"></p>
    <input type="submit" value="envoyer">
+   
   </form>
 </body>
 </html>

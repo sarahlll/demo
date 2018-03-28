@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>carnet</title>
+</head>
+<body>
+	<form th:action=@{/carnet} th:object="${carnet}" method="post">
+		                                                               <!--${carnet}  fait reference a l'objet et @{/formulaire} à l'url -->
+
+		<label> Monsieur</label> <input type="radio" value="M"
+			th:field="*{civilite}" />
+		<p th:if="${#fields.hasErrors('civilite')}" th:errors="*{civilite}"></p>
+
+		<label> Madame</label> <input type="radio" value="MME"
+			th:field="*{civilite}" checked="checked" /><br>
+		<p th:if="${#fields.hasErrors('civilite')}" th:errors="*{civilite}"></p>
+
+		<label> Nom</label><input type="text" th:field="*{nom}" /><br>
+		<p th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"></p>
+
+		<label> Prenom</label><input type="text" th:field="*{prenom}" /><br>
+		<p th:if="${#fields.hasErrors('prenom')}" th:errors="*{prenom}"></p>
+
+		<label> Date de naissance</label><input type="text"
+			th:field="*{dateDeNaissance}" /><br>
+		<p th:if="${#fields.hasErrors('dateDeNaissance')}"
+			th:errors="*{dateDeNaissance}"></p>
+
+		<label> Numero de telephone</label><input type="text"
+			th:field="*{tel}" /><br>
+		<p th:if="${#fields.hasErrors('tel')}" th:errors="*{tel}"></p>
+
+		<label> Email</label><input type="text" th:field="*{email}" /><br>
+		<p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+
+		<label> Code postale</label><input type="text" th:field="*{cp}" /><br>
+		<p th:if="${#fields.hasErrors('cp')}" th:errors="*{cp}"></p>
+
+		<label> Ville</label><input type="text" th:field="*{ville}" /> <br>
+		<p th:if="${#fields.hasErrors('ville')}" th:errors="*{ville}"></p>
+
+
+		<input th:type="hidden" th:name="_method" th:value="PUT"> <input
+			th:type="hidden" th:name="id" th:value="*{id}"> <input
+			type="submit" value="update"> 
+			
+
+	</form>
+
+
+	<p>Supprimer:</p>
+	<form action="@|/carnet/${carnet.id}|}" th:object="${carnet}"
+		th:methode="post"></form>
+	<input th:type="hidden" th:name="_method" th:value="DELETE">
+	<input type="submit" value="delete">
+</body>
+</html>
