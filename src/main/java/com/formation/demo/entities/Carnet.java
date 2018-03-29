@@ -7,10 +7,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -18,6 +20,15 @@ import javax.validation.constraints.Pattern;
 @Entity
 //@Table(name = "carnet")
 public class Carnet {
+	public List<Adresse> getAdresses() {
+		return adresses;
+	}
+
+
+	public void setAdresses(List<Adresse> adresses) {
+		this.adresses = adresses;
+	}
+
 	@Id
 	// @GeneratedValue// auto incrementation par hibernate
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // c la BDD qui génére le id
@@ -70,12 +81,27 @@ public class Carnet {
 	// "{com.formation.annuaire.constraint.nom.message}")
 	private String ville;
 
+	
+	//associations
+	@OneToMany(mappedBy="compte", fetch=FetchType.EAGER)
+	
+	private List<Compte> comptes;
+	
+	public List<Compte> getComptes() {
+		return comptes;
+	}
+
+
+	public void setComptes(List<Compte> comptes) {
+		this.comptes = comptes;
+	}
+
 	@ManyToMany
 	private List<Adresse> adresses;
 
 	public Carnet() {
 		adresses = new ArrayList<Adresse>();
-
+		comptes = new ArrayList<Compte>();
 	}
 
 	

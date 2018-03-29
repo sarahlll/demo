@@ -11,9 +11,12 @@ import com.formation.demo.repositories.CarnetRepository;
 
 @Service
 public class CarnetService {
-
-	@Autowired
-	CarnetRepository carnetRepository;
+ private final CarnetRepository carnetRepository;
+	
+ @Autowired
+	CarnetService(CarnetRepository carnetRepository){
+	 this.carnetRepository= carnetRepository;
+ }
 
 	public List<Carnet> getAll() {
 		return carnetRepository.findAll();

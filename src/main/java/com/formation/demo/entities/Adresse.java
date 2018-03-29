@@ -18,7 +18,7 @@ public class Adresse {
 
 	@Id
 	@GeneratedValue( strategy= GenerationType.IDENTITY)	
-	private Integer id;
+	private Long id;
 	
 	private Integer number;
 	
@@ -33,7 +33,7 @@ public class Adresse {
 	
 	private List<Carnet> carnets;
 
-	public Adresse(Integer id, Integer number, String street, Integer postcode, String town, List<Carnet> carnets) {
+	public Adresse(Long id, Integer number, String street, Integer postcode, String town, List<Carnet> carnets) {
 		super();
 		carnets =new ArrayList<Carnet>(); //initialisation
 		this.id = id;
@@ -48,11 +48,11 @@ public class Adresse {
 		
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
